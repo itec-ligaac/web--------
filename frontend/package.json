@@ -1,0 +1,23 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ancestor-mithril/web--------.git"
+  },
+  "keywords": [
+    "frontend"
+  ],
+  "author": "ancestor-mithril",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ancestor-mithril/web--------/issues"
+  },
+  "homepage": "https://github.com/ancestor-mithril/web--------#readme"
+}
