@@ -1,4 +1,3 @@
-/* eslint-disable */
 const { StatusCodes } = require("http-status-codes");
 const { UserModel } = require("../models");
 const bcrypt = require("bcrypt");
