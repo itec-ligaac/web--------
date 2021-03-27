@@ -1,14 +1,12 @@
+/* eslint-disable */
 const { StatusCodes } = require("http-status-codes");
 const { UserModel } = require("../models");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
     try {
         const { username, email, password } = req.body;
-
-        const oldUser = await UserModel.findOne({
-            email,
-        });
 
         const hash = bcrypt.hashSync(password, 10);
         await UserModel.create({
@@ -32,6 +30,12 @@ const register = async (req, res) => {
         });
     }
 };
+
+function generateAccessToken(username) {
+    // expires after half and hour (1800 seconds = 30 minutes)
+    return jwt.sign(username, process.env.SECRET, { expiresIn: '1800s' });
+} 
+
 const login = async (req, res) => {
     try {
       const { email, password } = req.body;

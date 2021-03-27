@@ -1,8 +1,8 @@
+/* eslint-disable */
 const { StatusCodes } = require("http-status-codes");
 const Amadeus = require('amadeus');
 const axios = require('axios')
 const qs = require('qs');
-const { func } = require("joi");
 
 var amadeus = new Amadeus({
     clientId: process.env.HOTEL_API_KEY,
@@ -12,7 +12,7 @@ var amadeus = new Amadeus({
 const searchByLocation = async (req, res) => {
     const { cityCode } = req.body;
     try {
-        x = await amadeus.shopping.hotelOffers.get({
+        let x = await amadeus.shopping.hotelOffers.get({
             cityCode : cityCode
         });
         x = JSON.parse(x.body);
@@ -27,14 +27,13 @@ const searchByLocation = async (req, res) => {
             success: false,
             message: "something went wrong",
         });
-    }
-    
+    }  
 }
 
 const searchByCoordinates = async (req, res) => {
     try {
         const { latitude, longitude } = req.body;
-        data = {
+        let data = {
             grant_type: 'client_credentials',
             client_id: process.env.HOTEL_API_KEY,
             client_secret: process.env.HOTEL_API_SECRET
