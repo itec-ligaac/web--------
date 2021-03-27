@@ -5,7 +5,8 @@
   "scripts": {
     "client": "cd frontend && npm start",
     "server": "cd backend && npm start",
-    "start": "npm i && concurrently \"npm run server\" \"npm run client\""
+    "start": "npm i && concurrently \"npm run server\" \"npm run client\"",
+    "lint": "cd backend && npm run lint"
   },
   "repository": {
     "type": "git",
