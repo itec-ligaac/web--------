@@ -6,6 +6,6 @@ const weatherController = require('./weather.controller')
 module.exports = {
   authController,
   hotelController,
-  covidController
+  covidController,
   weatherController
 };
