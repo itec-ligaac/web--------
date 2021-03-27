@@ -24,8 +24,8 @@
     "typescript": "^4.0.3"
   },
   "scripts": {
-    "serve": "cd build && python -m http.server $PORT",
-    "start": "react-scripts start",
+    "start": "npm run build && cd build && python -m http.server $PORT",
+    "serve": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
