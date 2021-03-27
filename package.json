@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ancestor-mithril/web--------#readme",
   "dependencies": {
+    "amadeus": "^5.6.1",
     "concurrently": "^6.0.0"
   }
 }

@@ -1,10 +1,22 @@
 const { StatusCodes } = require("http-status-codes");
+const Amadeus = require('amadeus');
+
+var amadeus = new Amadeus({
+    clientId: process.env.HOTEL_API_KEY,
+    clientSecret: process.env.HOTEL_API_SECRET
+});
 
 const searchByLocation = async (req, res) => {
+    const { cityCode } = req.body;
     try {
-        console.log(req.body);
+        x = await amadeus.shopping.hotelOffers.get({
+            cityCode : cityCode
+        });
+        x = JSON.parse(x.body);
+        console.log(x);
         res.status(StatusCodes.CREATED).json({
             success: true,
+            data: x.data
         });
     }
     catch (error) {
@@ -18,9 +30,9 @@ const searchByLocation = async (req, res) => {
 
 const searchByCoordinates = async (req, res) => {
     try {
-        console.log(req.body);
         res.status(StatusCodes.CREATED).json({
-            success: true,
+            success: false,
+            reason: "Not yet implemented - sdk doensn't offer support for coords, use basic api calls"
         });
     }
     catch (error) {
