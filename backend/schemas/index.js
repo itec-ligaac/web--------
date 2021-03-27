@@ -10,9 +10,20 @@ const register = Joi.object({
 const login = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().required(),
-  });
+});
+
+const hotelLocation = Joi.object({
+    cityCode: Joi.string().min(3).max(3).required(),
+});
+
+const hotelCoordinates = Joi.object({
+    latitude: Joi.number().required(),
+    longitude: Joi.number().required(),
+});
 
 module.exports = {
     register,
-    login
+    login,
+    hotelLocation,
+    hotelCoordinates,
 };
