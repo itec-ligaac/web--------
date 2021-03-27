@@ -18,7 +18,33 @@ const payloadValidation = (schema) => async (req, res, next) => {
         });
     }
 };
+const jwt = require("jsonwebtoken");
+
+const requireAuth = (req, res, next) => {
+    try {
+        const token = req.headers.authorization && req.headers.authorization.split(" ")[1];
+
+        if (!token) {
+            res.status(StatusCodes.UNAUTHORIZED).json({
+                success: false,
+            });
+            return;
+        }
+
+        jwt.verify(token, process.env.SECRET, (err, user) => {
+            console.log(err)
+            if (err) return res.sendStatus(403)
+            req.user = user
+            next()
+        });
+    } catch (error) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            success: false,
+        });
+    }
+};
 
 module.exports = {
     payloadValidation,
+    requireAuth
 };

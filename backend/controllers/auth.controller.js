@@ -1,5 +1,6 @@
 const { StatusCodes } = require("http-status-codes");
 const { UserModel } = require("../models");
+const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
     try {
@@ -31,10 +32,47 @@ const register = async (req, res) => {
         });
     }
 };
-const auth = async (req, res) => {
-};
+const login = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+  
+      const user = await UserModel.findOne({
+        email,
+      });
+  
+      if (!user) {
+        res.status(StatusCodes.NOT_FOUND).json({
+          success: false,
+          message: "user not found",
+        });
+        return;
+      }
+  
+      const checkPassword = bcrypt.compareSync(password, user.password);
+      if (!checkPassword) {
+        res.status(StatusCodes.FORBIDDEN).json({
+          success: false,
+          message: "password doesnt match",
+        });
+        return;
+      }
+  
+      const token = generateAccessToken({email});
+  
+      res.status(StatusCodes.OK).json({
+        success: true,
+        token,
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: "something went wrong",
+      });
+    }
+  };
 
 module.exports = {
     register,
-    auth,
+    login,
 };
