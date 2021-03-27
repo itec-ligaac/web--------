@@ -21,9 +21,14 @@ const hotelCoordinates = Joi.object({
     longitude: Joi.number().required(),
 });
 
+const covidCode = Joi.object({
+    countryCode: Joi.string().required(),
+})
+
 module.exports = {
     register,
     login,
     hotelLocation,
     hotelCoordinates,
+    covidCode
 };
