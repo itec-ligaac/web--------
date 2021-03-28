@@ -8,10 +8,11 @@ import {
 
 import Location from './components/Location'; 
 
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import ReactMapboxGl, { Layer, Feature, MapContext } from 'react-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { MapEvent } from 'react-mapbox-gl/lib/map-events';
 
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+//import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 const Map = ReactMapboxGl({
     accessToken: (process.env.REACT_APP_MAPBOX as string)
@@ -46,7 +47,7 @@ const App = () => {
     const [masterDataSource, setMasterDataSource] = useState(getAvailableLocations());
     const [dateRange, setDateRange] = useState('');
     const [selectedFilters, setSelectedFilters] = useState([]);
-    const [latLng, setLatLng] = useState({lat:45, lng:27});
+    const [latLng, setLatLng] = useState([45, 27]);
 
     const getFilterLocations = (): Array<any> => {
         const all = masterDataSource;
@@ -74,8 +75,8 @@ const App = () => {
             <Header 
                 as='h1' 
                 style={{ fontSize: '10em' }} 
-                content="Aplicatie" 
-                subheader="Wow"
+                content="TravelYou" 
+                subheader="Safely around the world"
                 textAlign="center"
             />
             <Container style={{ padding: '1em 0em' }}>
