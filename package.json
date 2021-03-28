@@ -1,0 +1,24 @@
+{
+  "name": "web--------",
+  "version": "1.0.0",
+  "description": "backend and frontend",
+  "scripts": {
+    "client": "cd frontend && npm start",
+    "server": "cd backend && npm start",
+    "start": "npm i && concurrently \"npm run server\" \"npm run client\"",
+    "lint": "cd backend && npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ancestor-mithril/web--------.git"
+  },
+  "author": "ancestor-mithril",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ancestor-mithril/web--------/issues"
+  },
+  "homepage": "https://github.com/ancestor-mithril/web--------#readme",
+  "dependencies": {
+    "concurrently": "^6.0.0"
+  }
+}
